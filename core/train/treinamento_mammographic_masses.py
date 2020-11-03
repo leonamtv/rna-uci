@@ -11,14 +11,14 @@ class TrainMammographicMasses :
         self.perceptron = Perceptron(qtd_in=qtd_in, qtd_out=qtd_out)
 
     def fit ( self ) :  
-        erros = []
         for i in range(self.epocas) :
-            erroEpoca = 0
+            erroAproxEpoca = 0
+            erroClassEpoca = 0
             data = self.data
             rnd.shuffle(data)
             for sample in data :
-                erro = self.perceptron.treinar( sample[0], sample[1])
-                erroEpoca += erro
-            print(f"Época {i + 1} | Erro: {erroEpoca}")
-            erros.append(erroEpoca)
+                erro_aprox, erro_class = self.perceptron.treinar( sample[0], sample[1])
+                erroAproxEpoca += erro_aprox
+                erroClassEpoca += erro_class
+            print(f"Época {i + 1} | Erro aprox: {erroAproxEpoca} | Erro class: {erroClassEpoca} ")
         return self.perceptron  

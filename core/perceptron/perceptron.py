@@ -9,24 +9,31 @@ class Perceptron :
         self.ni = ni
         self.pesos = np.random.rand(qtd_in + 1, qtd_out)
 
-    def treinar ( self, x, y ) :
+    def treinar ( self, x, y, threshold=0.5 ) :
+        
         input_x = x.copy()
         input_x.append(1)
         
-        def activation ( x ) :
-            try:
-                den = ( 1 + math.exp(-x))
-            except OverflowError:
-                den = float('inf')
-            return 1. / den
+        def sigmoid ( x ) :
+            try :
+                result = 1. / ( 1 + np.exp( x ))
+            except e :
+                result = 1. / ( 1 + np.exp( x ))
+                print(result)
+            return result
 
-        u = np.dot( np.array(input_x), self.pesos )
-        o = np.array([ activation(x) for x in u ])
+        u = np.float128(np.dot( np.array(input_x), self.pesos ))
+        o = np.float128(sigmoid(u))
         
-        erro = np.subtract( np.array(y), o )
+        erro = np.float128(np.subtract( np.array(y), o ))
+
+        classif = [ 0 if output <= threshold else 1 for output in o ]
+
+        erros_classif = np.subtract( y, np.array(classif) )
+        erro_classif = np.sum(erros_classif)
         
         for i, e in enumerate(erro) :
             deltas = self.ni * e * np.array(input_x)
             self.pesos[:, i] += deltas
 
-        return np.sum(np.abs(erro))
+        return np.sum(np.abs(erro)), 0 if erro_classif == 0 else 1
