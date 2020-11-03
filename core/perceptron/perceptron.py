@@ -15,17 +15,12 @@ class Perceptron :
         input_x.append(1)
         
         def sigmoid ( x ) :
-            try :
-                result = 1. / ( 1 + np.exp( x ))
-            except e :
-                result = 1. / ( 1 + np.exp( x ))
-                print(result)
-            return result
+            return 1. / ( 1 + np.exp( -x ))
 
         u = np.float128(np.dot( np.array(input_x), self.pesos ))
-        o = np.float128(sigmoid(u))
+        o = sigmoid(u)
         
-        erro = np.float128(np.subtract( np.array(y), o ))
+        erro = np.subtract( np.array(y), o )
 
         classif = [ 0 if output <= threshold else 1 for output in o ]
 
