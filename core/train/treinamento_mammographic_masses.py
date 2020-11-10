@@ -6,6 +6,20 @@ import random as rnd
 class TrainMammographicMasses :
 
     def __init__ ( self, epocas, qtd_in, qtd_out, data, taxa_aprendizado=0.3) :
+        """
+        Parâmetros:
+        -----------
+        epocas: int
+            Número de épocas de treinamento
+        qtd_in: int
+            Número de entradas do perceptron
+        qtd_out: int
+            Número de saídas (classes) do perceptron
+        data: Lista de tuplas contendo entrada e saída
+            Base de dados para treinamento
+        taxa_aprendizado: float, opcional
+            Taxa de aprendizado do perceptron. Padrão 0.3
+        """
         self.data = data
         self.epocas = epocas
         self.perceptron = Perceptron(qtd_in=qtd_in, qtd_out=qtd_out, ni=taxa_aprendizado)
