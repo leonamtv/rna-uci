@@ -15,14 +15,18 @@ def create_model ( ) :
 
     input_layer   = tf.keras.layers.Input(shape=(1, 5), batch_size=10)
     dense_layer_1 = tf.keras.layers.Dense(10, activation='sigmoid')(input_layer)
-    drop_layer_1  = tf.keras.layers.Dropout(0.2)(dense_layer_1)
-    dense_layer_2 = tf.keras.layers.Dense(25, activation='sigmoid')(drop_layer_1)
-    drop_layer_2  = tf.keras.layers.Dropout(0.2)(dense_layer_2)
-    dense_layer_3 = tf.keras.layers.Dense(25, activation='relu')(drop_layer_2)
-    drop_layer_3  = tf.keras.layers.Dropout(0.2)(dense_layer_3)
-    dense_layer_4 = tf.keras.layers.Dense(10, activation='sigmoid')(drop_layer_3)
-    drop_layer_4  = tf.keras.layers.Dropout(0.2)(dense_layer_4)
-    dense_layer_4 = tf.keras.layers.Dense(1, activation='sigmoid')(drop_layer_4)
+    dense_layer_4 = tf.keras.layers.Dense(1, activation='sigmoid')(dense_layer_1)
+
+    # input_layer   = tf.keras.layers.Input(shape=(1, 5), batch_size=10)
+    # dense_layer_1 = tf.keras.layers.Dense(10, activation='sigmoid')(input_layer)
+    # drop_layer_1  = tf.keras.layers.Dropout(0.2)(dense_layer_1)
+    # dense_layer_2 = tf.keras.layers.Dense(25, activation='sigmoid')(drop_layer_1)
+    # drop_layer_2  = tf.keras.layers.Dropout(0.2)(dense_layer_2)
+    # dense_layer_3 = tf.keras.layers.Dense(25, activation='relu')(drop_layer_2)
+    # drop_layer_3  = tf.keras.layers.Dropout(0.2)(dense_layer_3)
+    # dense_layer_4 = tf.keras.layers.Dense(10, activation='sigmoid')(drop_layer_3)
+    # drop_layer_4  = tf.keras.layers.Dropout(0.2)(dense_layer_4)
+    # dense_layer_4 = tf.keras.layers.Dense(1, activation='sigmoid')(drop_layer_4)
 
     model = tf.keras.Model(inputs=[ input_layer ], outputs=[ dense_layer_4 ])
 
@@ -40,7 +44,7 @@ def plot_model ( model ) :
 
 
 def train ( model, train_input, train_label ) :
-    model.fit(train_input, train_label, batch_size=10, epochs=400)    
+    model.fit(train_input, train_label, batch_size=10, epochs=200)    
 
 def test ( model, test_input, test_label ) :
     model.evaluate( test_input, test_label )

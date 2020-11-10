@@ -3,7 +3,7 @@ import math
 
 class Perceptron :
 
-    def __init__ ( self, qtd_in, qtd_out, ni=0.3 ) :
+    def __init__ ( self, qtd_in, qtd_out, ni=0.0001 ) :
         self.qtd_in = qtd_in
         self.qtd_out = qtd_out
         self.ni = ni
