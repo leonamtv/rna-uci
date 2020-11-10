@@ -5,10 +5,10 @@ import random as rnd
 
 class TrainMammographicMasses :
 
-    def __init__ ( self, epocas, qtd_in, qtd_out, data) :
+    def __init__ ( self, epocas, qtd_in, qtd_out, data, taxa_aprendizado=0.3) :
         self.data = data
         self.epocas = epocas
-        self.perceptron = Perceptron(qtd_in=qtd_in, qtd_out=qtd_out)
+        self.perceptron = Perceptron(qtd_in=qtd_in, qtd_out=qtd_out, ni=taxa_aprendizado)
 
     def fit ( self ) :  
         for i in range(self.epocas) :

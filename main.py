@@ -11,5 +11,5 @@ train_split = int( 0.8 * len(data))
 
 train_data, test_data = data[:train_split], data[train_split:]
 
-perceptronTreinar = TrainMammographicMasses(1000, 5, 1, data)
+perceptronTreinar = TrainMammographicMasses(1000, 5, 1, data, 0.0001)
 perceptronTreinar.fit()
