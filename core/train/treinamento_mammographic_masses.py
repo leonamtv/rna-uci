@@ -1,6 +1,5 @@
 from core.perceptron.perceptron import Perceptron
 
-import matplotlib.pyplot as plt
 import random as rnd
 
 class TrainMammographicMasses :
